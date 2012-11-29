@@ -48,4 +48,15 @@ getData <- read.delim(
 getData$time <- as.POSIXct(getData$time, "%m/%d/%Y %H:%M",tz="")
 
 
-
+# Build package
+library(devtools)
+setwd("D:/LADData/RCode/")
+load_all("EnDDaT/",reset = TRUE)
+setwd("D:/LADData/RCode/EnDDaT")
+document()
+check()  
+# run_examples()
+# test()   #Assumes testthat type tests in EnDDaT/inst/tests
+setwd("D:/LADData/RCode/")
+build("GLRI")
+install("GLRI")
