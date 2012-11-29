@@ -1,0 +1,31 @@
+\name{generateNWISurl}
+\alias{generateNWISurl}
+\title{Get NWIS parts of URL for EnDDaT}
+\usage{
+  generateNWISurl(siteNumber, pCode, statCd, colName)
+}
+\arguments{
+  \item{siteNumber}{string USGS site ID numbers}
+
+  \item{pCode}{string 5 digit parameter code}
+
+  \item{statCd}{string 5 digit stat code}
+
+  \item{colName}{string column name}
+}
+\value{
+  NWIScall string
+}
+\description{
+  Get NWIS parts of URL for EnDDaT
+}
+\examples{
+siteNumber <- '04024000'
+parameterCd <- '00060'
+statCd <- '00003'
+colName <- 'Gage height [ft]'
+
+firstReturn <- generateNWISurl(siteNumber, parameterCd,statCd,colName)
+secondReturn <-generateNWISurl('04010500', '00010','00001','Temperature C')
+}
+

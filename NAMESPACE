@@ -1,0 +1,5 @@
+export(addStatProcess)
+export(addVectorProcess)
+export(generateBaseUrl)
+export(generateGLCFSurl)
+export(generateNWISurl)

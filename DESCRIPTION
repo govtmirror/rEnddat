@@ -1,0 +1,23 @@
+Package: EnDDaT
+Type: Package
+Title: R EnDDaT
+Version: 1.0.0
+Date: 2012-11-29
+Author: Laura De Cicco
+Maintainer: Laura De Cicco <ldecicco@usgs.gov>
+Description: GLRI toxic contaminants
+License: This software is in the public domain because it contains materials
+    that originally came from the United States Geological Survey, an agency of
+    the United States Department of Interior. For more information, see the
+    official USGS copyright policy at
+    http://www.usgs.gov/visual-id/credit_usgs.html#copyright
+Collate:
+    'addStatProcess.r'
+    'addVectorProcess.r'
+    'generateBaseUrl.r'
+    'generateGLCFSurl.r'
+    'generateNWISurl.r'
+Depends:
+    R (>= 2.15.2)
+LazyLoad: yes
+LazyData: yes
