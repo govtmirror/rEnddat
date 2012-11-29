@@ -2,10 +2,12 @@
 #'
 #' Get GLCFS parts of URL for EnDDaT
 #'
-#' @param siteNumber string USGS site ID numbers 
-#' @param pCode string 5 digit parameter code
-#' @param statCd string 5 digit stat code
+#' @param xPoint string GLCFS x index
+#' @param yPoint string GLCFS y index
+#' @param zPoint string GLCFS z index
 #' @param colName string column name
+#' @param sourceNum integer (0,1,2) defines which data source
+#' @param varName string variable name
 #' @return GLCFScall string
 #' @export
 #' @examples

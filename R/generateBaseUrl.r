@@ -9,7 +9,6 @@
 #' @param lake string
 #' @param beachLat string
 #' @param beachLon string 
-#' @param fill string
 #' @return baseURL string
 #' @export
 #' @examples

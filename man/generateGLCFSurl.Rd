@@ -6,13 +6,18 @@
     varName, colName)
 }
 \arguments{
-  \item{siteNumber}{string USGS site ID numbers}
+  \item{xPoint}{string GLCFS x index}
 
-  \item{pCode}{string 5 digit parameter code}
+  \item{yPoint}{string GLCFS y index}
 
-  \item{statCd}{string 5 digit stat code}
+  \item{zPoint}{string GLCFS z index}
 
   \item{colName}{string column name}
+
+  \item{sourceNum}{integer (0,1,2) defines which data
+  source}
+
+  \item{varName}{string variable name}
 }
 \value{
   GLCFScall string

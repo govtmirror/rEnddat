@@ -2,7 +2,8 @@
 \alias{addVectorProcess}
 \title{Add vector processing to call}
 \usage{
-  addVectorProcess(urlSection, vectorProcess, angle = 0)
+  addVectorProcess(urlSection, vectorProcess, angle = 0,
+    customColName = "")
 }
 \arguments{
   \item{urlSection}{string USGS site ID numbers}
@@ -12,7 +13,10 @@
   angle required.}
 
   \item{angle}{number beach angle in degrees from north.
-  Default is 0.}
+  Default is 0}
+
+  \item{customColName}{string Column name if not
+  auto-generated}
 }
 \value{
   vectorCall string

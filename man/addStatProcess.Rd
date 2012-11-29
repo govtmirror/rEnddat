@@ -2,7 +2,8 @@
 \alias{addStatProcess}
 \title{Add statistical processing to call}
 \usage{
-  addStatProcess(urlSection, process, numHours)
+  addStatProcess(urlSection, process, numHours,
+    customColName = "")
 }
 \arguments{
   \item{urlSection}{string USGS site ID numbers}
@@ -11,6 +12,9 @@
   Mean,Min,Max,Sum,Diff,StDev}
 
   \item{numHours}{integer number of hours to process}
+
+  \item{customColName}{string Column name if not
+  auto-generated}
 }
 \value{
   processCall string

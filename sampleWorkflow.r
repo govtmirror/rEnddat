@@ -1,3 +1,5 @@
+library("EnDDaT")
+
 # Get Enddat workflow:
 
 # NWIS:
@@ -18,7 +20,12 @@ sourceNum <- 0
 varName <- 'vc'
 colName <- 'Northward velocity at surface'
 GLCFScall <- generateGLCFSurl(xPoint, yPoint,zPoint,sourceNum,varName,colName)
+process <- 'Mean'
+numHours <- 48
 processGLCFS <- addStatProcess(GLCFScall, process, numHours)
+vectorProcess <- 'par'
+angle <- 22.1
+angleProcess <- addVectorProcess(GLCFScall,vectorProcess,angle)
 
 # General:
 beachName <- 'Sample Beach'
@@ -31,7 +38,7 @@ beachLon <- ''
 
 baseReturn <- generateBaseUrl(beachName, beginPosition,endPosition,tzone,lake,beachLat,beachLon)
 
-testURL <- paste(baseReturn,processedReturn,firstReturn,GLCFScall,processGLCFS,sep="&")
+testURL <- paste(baseReturn,processedReturn,firstReturn,GLCFScall,angleProcess,processGLCFS,sep="&")
 
 setInternet2(use=NA)
 setInternet2(use=FALSE)
@@ -47,16 +54,19 @@ getData <- read.delim(
 
 getData$time <- as.POSIXct(getData$time, "%m/%d/%Y %H:%M",tz="")
 
-
+##################################################################################
 # Build package
 library(devtools)
 setwd("D:/LADData/RCode/")
 load_all("EnDDaT/",reset = TRUE)
 setwd("D:/LADData/RCode/EnDDaT")
 document()
-check()  
+check()
 # run_examples()
 # test()   #Assumes testthat type tests in EnDDaT/inst/tests
 setwd("D:/LADData/RCode/")
-build("GLRI")
-install("GLRI")
+build("EnDDaT")
+install("EnDDaT")
+
+library("EnDDaT")
+

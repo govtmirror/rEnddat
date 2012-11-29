@@ -5,6 +5,7 @@
 #' @param urlSection string USGS site ID numbers 
 #' @param process string options are Mean,Min,Max,Sum,Diff,StDev
 #' @param numHours integer number of hours to process
+#' @param customColName string Column name if not auto-generated
 #' @return processCall string
 #' @export
 #' @examples
@@ -17,11 +18,15 @@
 #' process <- 'Mean'
 #' numHours <- 6
 #' firstReturn <- addStatProcess(firstCall, process, numHours)
-addStatProcess <- function(urlSection, process, numHours){
+addStatProcess <- function(urlSection, process, numHours,customColName=""){
   
   urlSection <- strsplit(urlSection,"!")
   urlSec1 <- paste(urlSection[[1]][1],process,as.character(numHours),sep=":")
-  colName <- URLencode(paste(process, 'over', numHours,URLdecode(urlSection[[1]][2]),sep=" "))
+  if(nchar(customColName == 0)){
+    colName <- URLencode(paste(process, 'over', numHours,URLdecode(urlSection[[1]][2]),sep=" "))
+  } else {
+    colName <- customColName
+  }
   processCall <- paste(urlSec1,colName,sep="!")
   return(processCall)
   

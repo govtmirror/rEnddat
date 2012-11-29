@@ -19,8 +19,6 @@
   \item{beachLat}{string}
 
   \item{beachLon}{string}
-
-  \item{fill}{string}
 }
 \value{
   baseURL string
