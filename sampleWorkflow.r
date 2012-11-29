@@ -40,6 +40,9 @@ baseReturn <- generateBaseUrl(beachName, beginPosition,endPosition,tzone,lake,be
 
 testURL <- paste(baseReturn,processedReturn,firstReturn,GLCFScall,angleProcess,processGLCFS,sep="&")
 
+FischerFilterID <- "0925af38-d570-402f-a6ed-1e25f0554364"
+
+
 setInternet2(use=NA)
 setInternet2(use=FALSE)
 setInternet2(use=NA)
