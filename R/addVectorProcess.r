@@ -34,7 +34,7 @@ addVectorProcess <- function(urlSection, vectorProcess, angle=0, customColName="
   
   urlSec1 <- paste(urlSec1,compName,vectorProcess,as.character(angle),sep=":")
   
-  if(nchar(customColName == 0)){
+  if(nchar(customColName) == 0){
     colName <- URLencode(paste(vectorProcess, URLdecode(urlSection[[1]][2]),sep=" "))
   } else {
     colName <- customColName

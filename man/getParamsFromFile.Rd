@@ -1,0 +1,21 @@
+\name{getParamsFromFile}
+\alias{getParamsFromFile}
+\title{Get EnDDaT requests from file}
+\usage{
+  getParamsFromFile(filePath, fileName)
+}
+\arguments{
+  \item{filePath}{string local path to file}
+
+  \item{fileName}{string file name}
+}
+\value{
+  totalParams dataframe
+}
+\description{
+  Get EnDDaT requests from file
+}
+\examples{
+\dontrun{getParamsFromFile(filePath,fileName)}
+}
+

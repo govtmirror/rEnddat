@@ -1,75 +1,53 @@
 library("EnDDaT")
 
-# Get Enddat workflow:
+fileName <- "fischerParams.csv"
+filePath <- "//igsarmewfsapa/projects/QW Monitoring Team/GLRI beaches/Modeling/Model development 2012"
 
-# NWIS:
-siteNumber <- '04024000'
-parameterCd <- '00060'
-statCd <- '00003'
-colName <- 'Gage height [ft]'
-firstReturn <- generateNWISurl(siteNumber, parameterCd,statCd,colName)
-process <- 'Mean'
-numHours <- 48
-processedReturn <- addStatProcess(firstReturn, process, numHours)
-
-#GLCFS:
-xPoint <- 130
-yPoint <- 13
-zPoint <- -1
-sourceNum <- 0
-varName <- 'vc'
-colName <- 'Northward velocity at surface'
-GLCFScall <- generateGLCFSurl(xPoint, yPoint,zPoint,sourceNum,varName,colName)
-process <- 'Mean'
-numHours <- 48
-processGLCFS <- addStatProcess(GLCFScall, process, numHours)
-vectorProcess <- 'par'
-angle <- 22.1
-angleProcess <- addVectorProcess(GLCFScall,vectorProcess,angle)
-
-# General:
-beachName <- 'Sample Beach'
-beginPosition <- '2006-10-02'
-endPosition <- '2006-10-05'
+#General beach info:
 tzone <- '-6_CST'
 lake <- 'michigan'
-beachLat <- ''
-beachLon <- ''
+gap <- 6
+# It might be OK to grab entire record for NWIS...but definitely not GLCFS data:
+fischer2010ID <- "41ba55cf-600e-4cf7-9488-c299fb0f618b"
+fischer2011ID <- "f02e6815-9784-4af1-b4da-19a148588838"
+fischer2012ID <- "ad37e396-b2ff-4f80-aacb-c4455ee0be2a"
 
-baseReturn <- generateBaseUrl(beachName, beginPosition,endPosition,tzone,lake,beachLat,beachLon)
+#Optional:
+beachName <- 'Fischer Beach'
+#other options:
+# beginPosition <- '2006-10-02'
+# endPosition <- '2006-10-05'
+# beachLat <- ''
+# beachLon <- ''
 
-testURL <- paste(baseReturn,processedReturn,firstReturn,GLCFScall,angleProcess,processGLCFS,sep="&")
-
-FischerFilterID <- "0925af38-d570-402f-a6ed-1e25f0554364"
-
-
+# *Should* increase loading time
 setInternet2(use=NA)
 setInternet2(use=FALSE)
 setInternet2(use=NA)
+options(timeout=120)
 
-getData <- read.delim(  
-  testURL, 
-  header = TRUE, 
-  dec=".", 
-  sep='\t',
-  fill = TRUE, 
-  comment.char="#")
+#2012
+baseReturn <- generateBaseUrl(beachName = beachName, tzone=tzone,lake=lake,filter = fischer2012ID,gap=gap)
+#Slow!:
+NWISData <- getNWISData(filePath,fileName,baseReturn)
+GLCFSData <- getGLCFSData(filePath,fileName,baseReturn)
+EnDDaTData <- mergeENDDAT(NWISData, GLCFSData)
 
-getData$time <- as.POSIXct(getData$time, "%m/%d/%Y %H:%M",tz="")
+#2011
+baseReturn2011 <- generateBaseUrl(beachName = beachName, tzone=tzone,lake=lake,filter = fischer2011ID,gap=gap)
+#Slow!:
+NWISData2011 <- getNWISData(filePath,fileName,baseReturn2011)
+GLCFSData2011 <- getGLCFSData(filePath,fileName,baseReturn2011)
+EnDDaTData2011 <- mergeENDDAT(NWISData2011, GLCFSData2011)
+EnDDaTData <- mergeENDDAT(EnDDaTData, EnDDaTData2011)
 
-##################################################################################
-# Build package
-library(devtools)
-setwd("D:/LADData/RCode/")
-load_all("EnDDaT/",reset = TRUE)
-setwd("D:/LADData/RCode/EnDDaT")
-document()
-check()
-# run_examples()
-# test()   #Assumes testthat type tests in EnDDaT/inst/tests
-setwd("D:/LADData/RCode/")
-build("EnDDaT")
-install("EnDDaT")
+#2010
+baseReturn2010 <- generateBaseUrl(beachName = beachName, tzone=tzone,lake=lake,filter = fischer2010ID,gap=gap)
+#Slow!:
+NWISData2010 <- getNWISData(filePath,fileName,baseReturn2010)
+GLCFSData2010 <- getGLCFSData(filePath,fileName,baseReturn2010)
+EnDDaTData2010 <- mergeENDDAT(NWISData2010, GLCFSData2010)
+EnDDaTData <- mergeENDDAT(EnDDaTData, EnDDaTData2010)
 
-library("EnDDaT")
+write.csv(EnDDaTData,file="//igsarmewfsapa/projects/QW Monitoring Team/GLRI beaches/Modeling/Model development 2012/fischer.csv",row.names=FALSE)
 

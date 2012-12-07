@@ -1,0 +1,22 @@
+\name{dataRequest}
+\alias{dataRequest}
+\title{Open csv requestData file}
+\usage{
+  dataRequest(totalParams)
+}
+\arguments{
+  \item{totalParams}{dataframe}
+}
+\value{
+  requestData list
+}
+\description{
+  Open csv requestData file
+}
+\examples{
+fileName <- "fischerParams.csv"
+filePath <- "//igsarmewfsapa/projects/QW Monitoring Team/GLRI beaches/Modeling/Model development 2012"
+totalParams <- getParamsFromFile(filePath,fileName)
+requestData <- dataRequest(totalParams)
+}
+

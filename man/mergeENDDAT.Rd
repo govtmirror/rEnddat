@@ -1,0 +1,23 @@
+\name{mergeENDDAT}
+\alias{mergeENDDAT}
+\title{Merge EnDDaT dataframes}
+\usage{
+  mergeENDDAT(DF1, DF2)
+}
+\arguments{
+  \item{DF1}{dataframe}
+
+  \item{DF2}{dataframe}
+}
+\value{
+  mergedDF dataframe
+}
+\description{
+  Merge EnDDaT dataframes
+}
+\examples{
+DF1 <- data.frame(time=c(1,2,3), a=c(1,4,8), b=c(2,6,9))
+DF2 <- data.frame(time=c(1,2,4), a=c(1,4,8), c=c(2,6,9))
+mergedDF <- mergeENDDAT(DF1,DF2)
+}
+

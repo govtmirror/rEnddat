@@ -17,7 +17,14 @@ Collate:
     'generateBaseUrl.r'
     'generateGLCFSurl.r'
     'generateNWISurl.r'
+    'generateProcessedNWISurl.r'
+    'generateProcessedGLCFS.r'
+    'mergeENDDAT.r'
+    'dataRequest.r'
+    'getGLCFSData.r'
+    'getNWISData.r'
+    'getParamsFromFile.r'
 Depends:
-    R (>= 2.15.0)
+    R (>= 2.15.2)
 LazyLoad: yes
 LazyData: yes
