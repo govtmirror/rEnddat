@@ -2,6 +2,7 @@ library("EnDDaT")
 
 fileName <- "fischerParams.csv"
 filePath <- "//igsarmewfsapa/projects/QW Monitoring Team/GLRI beaches/Modeling/Model development 2012"
+totalParams <- getParamsFromFile(filePath, fileName)
 
 #General beach info:
 tzone <- '-6_CST'
@@ -28,24 +29,30 @@ options(timeout=120)
 
 #2012
 baseReturn <- generateBaseUrl(beachName = beachName, tzone=tzone,lake=lake,filter = fischer2012ID,gap=gap)
+#Quick test:
+subDF <- totalParams[77:81,]
+NWISDataMini <- getNWISData(subDF,baseReturn)
+GLCFSDataMini <- getGLCFSData(subDF,baseReturn)
+EnDDaTDataMini <- mergeENDDAT(NWISDataMini, GLCFSDataMini)
+
 #Slow!:
-NWISData <- getNWISData(filePath,fileName,baseReturn)
-GLCFSData <- getGLCFSData(filePath,fileName,baseReturn)
+NWISData <- getNWISData(totalParams,baseReturn)
+GLCFSData <- getGLCFSData(totalParams,baseReturn)
 EnDDaTData <- mergeENDDAT(NWISData, GLCFSData)
 
 #2011
 baseReturn2011 <- generateBaseUrl(beachName = beachName, tzone=tzone,lake=lake,filter = fischer2011ID,gap=gap)
 #Slow!:
-NWISData2011 <- getNWISData(filePath,fileName,baseReturn2011)
-GLCFSData2011 <- getGLCFSData(filePath,fileName,baseReturn2011)
+NWISData2011 <- getNWISData(totalParams,baseReturn2011)
+GLCFSData2011 <- getGLCFSData(totalParams,baseReturn2011)
 EnDDaTData2011 <- mergeENDDAT(NWISData2011, GLCFSData2011)
 EnDDaTData <- mergeENDDAT(EnDDaTData, EnDDaTData2011)
 
 #2010
 baseReturn2010 <- generateBaseUrl(beachName = beachName, tzone=tzone,lake=lake,filter = fischer2010ID,gap=gap)
 #Slow!:
-NWISData2010 <- getNWISData(filePath,fileName,baseReturn2010)
-GLCFSData2010 <- getGLCFSData(filePath,fileName,baseReturn2010)
+NWISData2010 <- getNWISData(totalParams,baseReturn2010)
+GLCFSData2010 <- getGLCFSData(totalParams,baseReturn2010)
 EnDDaTData2010 <- mergeENDDAT(NWISData2010, GLCFSData2010)
 EnDDaTData <- mergeENDDAT(EnDDaTData, EnDDaTData2010)
 

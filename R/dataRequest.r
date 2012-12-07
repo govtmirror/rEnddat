@@ -41,10 +41,15 @@ dataRequest <- function(totalParams){
       }  
     }
     NWISPCodes <- unique(NWIS$pCode)
-  }else{
+    NWISSites <- unique(NWIS$siteID)
+    
+  } else {
+    
     NWISCalls <- NA
     NWISPCodes <- NA
+    NWISSites <- NA
     NWIS <- NA
+    
   }
   
   if(nrow(GLCFS)>0){
@@ -94,6 +99,7 @@ dataRequest <- function(totalParams){
   dataReturn <- list("NWISCalls" = NWISCalls,
                      "GLCFSCalls" = GLCFSCalls, 
                      "NWISPCodes" = NWISPCodes,
+                     "NWISSites" = NWISSites,
                      "GLCFSVars" = GLCFSVars, 
                      "GLCFSSources" = GLCFSSources,
                      "NWIS" = NWIS,
