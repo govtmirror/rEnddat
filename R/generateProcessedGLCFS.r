@@ -30,13 +30,12 @@
 generateProcessedGLCFSurl <- function(xPoint, yPoint,zPoint,sourceNum,varName,colName, process, numHours,angle=NA,vector=NA){
   
   GLCFS <- generateGLCFSurl(xPoint, yPoint,zPoint,sourceNum,varName,colName)
-  
-  
+
   if (!is.na(angle) & !is.na(vector)){
-    processed <- addVectorProcess(GLCFS, vector, angle)
-    processed <- addStatProcess(processed, process, numHours)
+    processed <- addVectorProcess(GLCFS, vector, angle,colName)
+    processed <- addStatProcess(processed, process, numHours,colName)
   } else {
-    processed <- addStatProcess(GLCFS, process, numHours)
+    processed <- addStatProcess(GLCFS, process, numHours,colName)
   }
   
   

@@ -6,8 +6,8 @@
 #' @return requestData list
 #' @export
 #' @examples
-#' fileName <- "fischerParams.csv"
-#' filePath <- "//igsarmewfsapa/projects/QW Monitoring Team/GLRI beaches/Modeling/Model development 2012"
+#' fileName <- "ULPParams3.csv"
+#' filePath <- "//igsarmewfsapa/projects/QW Monitoring Team/GLRI beaches/Modeling/Model development 2012/ULP"
 #' totalParams <- getParamsFromFile(filePath,fileName)
 #' requestData <- dataRequest(totalParams)
 dataRequest <- function(totalParams){

@@ -2,6 +2,13 @@ library("EnDDaT")
 
 fileName <- "fischerParams.csv"
 filePath <- "//igsarmewfsapa/projects/QW Monitoring Team/GLRI beaches/Modeling/Model development 2012"
+fileName <- "fischerParams.csv"
+
+filePathULP <- "//igsarmewfsapa/projects/QW Monitoring Team/GLRI beaches/Modeling/Model development 2012/ULP"
+fileNameULP <- "fischerParams.csv"
+
+
+
 totalParams <- getParamsFromFile(filePath, fileName)
 
 #General beach info:
@@ -12,6 +19,9 @@ gap <- 6
 fischer2010ID <- "41ba55cf-600e-4cf7-9488-c299fb0f618b"
 fischer2011ID <- "f02e6815-9784-4af1-b4da-19a148588838"
 fischer2012ID <- "ad37e396-b2ff-4f80-aacb-c4455ee0be2a"
+
+ULP2012ID <- "a1e30115-e6c9-4945-a738-f06466bfc009"
+
 
 #Optional:
 beachName <- 'Fischer Beach'
