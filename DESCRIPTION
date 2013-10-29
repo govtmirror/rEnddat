@@ -1,11 +1,12 @@
-Package: EnDDaTinternal
+Package: EnDDaT
 Type: Package
 Title: R EnDDaT
-Version: 1.0.1
-Date: 2013-04-17
+Version: 1.1.0
+Date: 2013-07-18
 Author: Laura De Cicco
 Maintainer: Laura De Cicco <ldecicco@usgs.gov>
-Description: GLRI toxic contaminants
+Description: This package breaks up EnDDaT requests into small easier to manage
+    chunks.
 License: file LICENSE
 Copyright: This software is in the public domain because it contains materials
     that originally came from the United States Geological Survey, an agency of
@@ -25,7 +26,15 @@ Collate:
     'getGLCFSData.r'
     'getNWISData.r'
     'getParamsFromFile.r'
+    'enddat.R'
+    'getGDPId.R'
+    'getGDPData.r'
+    'getEnDDaTData.r'
+    'getPRECIPData.r'
 Depends:
-    R (>= 2.15.2)
+    R (>= 3.0.0)
+Imports:
+    XML,
+    RCurl
 LazyLoad: yes
 LazyData: yes

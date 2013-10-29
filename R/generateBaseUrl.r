@@ -19,12 +19,10 @@
 #' endPosition <- '2006-10-05'
 #' tzone <- '-5_CDT'
 #' lake <- 'michigan'
-#' beachLat <- ''
-#' beachLon <- ''
 #' FischerFilterID <- "0925af38-d570-402f-a6ed-1e25f0554364"
 #' gap <- 6
-#' baseReturn <- generateBaseUrl(beachName, beginPosition,endPosition,tzone,lake,beachLat,beachLon,FischerFilterID,gap)
-generateBaseUrl <- function(beachName="", beginPosition="",endPosition="",tzone="-6_CST",lake='michigan',beachLat="",beachLon="",filter="",gap=""){
+#' baseReturn <- generateBaseUrl(beginPosition,endPosition,beachName=beachName,tzone=tzone,lake=lake,FischerFilterID,gap)
+generateBaseUrl <- function(beginPosition,endPosition,beachName="",tzone="-6_CST",lake='michigan',beachLat="",beachLon="",filter="",gap=""){
   
   beachName <- paste('BeachName',beachName,sep="=")
   beginPosition <- paste('beginPosition', beginPosition,sep="=")
@@ -37,7 +35,8 @@ generateBaseUrl <- function(beachName="", beginPosition="",endPosition="",tzone=
   gap <- paste('timeInt',gap,sep="=")
 
   baseURL <- "http://cida.usgs.gov/enddat/service/execute?style=tab&download=on&DateFormat=Excel"
-  
+#   baseURL <- "http://igsarm-cida-javadev1.er.usgs.gov:8080/enddat-services/execute?style=tab&download=on&DateFormat=Excel"
+   
   baseURL <- paste(baseURL, beachName, beginPosition, endPosition, tzone, lake, beachLat, beachLon, filter, gap, sep="&")
   baseURL <- URLencode(baseURL)
   return(baseURL)

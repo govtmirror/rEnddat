@@ -14,6 +14,8 @@ dataRequest <- function(totalParams){
   
   NWIS <- totalParams['NWIS' == totalParams$Source,]
   GLCFS <- totalParams['GLCFS' == totalParams$Source,]
+  GDP <- totalParams['GDP' == totalParams$Source,]
+  PRECIP <- totalParams['PRECIP' == totalParams$Source,]  
   
   padVariable <- function(x,padTo){
     numDigits <- nchar(x)
@@ -48,8 +50,7 @@ dataRequest <- function(totalParams){
     NWISCalls <- NA
     NWISPCodes <- NA
     NWISSites <- NA
-    NWIS <- NA
-    
+    NWIS <- NA    
   }
   
   if(nrow(GLCFS)>0){
@@ -96,6 +97,100 @@ dataRequest <- function(totalParams){
     GLCFSSources <- NA
     GLCFS <- NA
   }
+  
+  if(nrow(GDP)>0){
+    for (i in 1:nrow(GDP)){
+
+      stat <- GDP$Statistic[i]
+      time <- GDP$Hours[i]
+      shapefile <- GDP$StationName[i]
+      shapefileFeature <- GDP$Descriptor[i]
+      colName <- GDP$colName[i]
+
+      if(1 == i){
+        if(!is.na(stat) & !is.na(time)){
+          GDPCalls <- paste("precip4",stat,time,sep=":")          
+        } else {
+          GDPCalls <- "precip4"
+        }
+        
+        if(!is.na(colName)){
+          GDPCalls <- paste(GDPCalls,colName,sep="!")
+        } else {
+          
+          GDPCalls <- paste(GDPCalls,URLencode(paste(stat, 'over', time, "precip",sep=" ")),sep="!")
+        }
+        
+      } else {
+        
+        if(!is.na(stat) & !is.na(time)){
+          GDPCallsNew <- paste("precip4",stat,time,sep=":")          
+        } else {
+          GDPCallsNew <- "precip4"
+        }
+        
+        if(!is.na(colName)){
+          GDPCallsNew <- paste(GDPCallsNew,colName,sep="!")
+        } else {          
+          GDPCallsNew <- paste(GDPCallsNew,URLencode(paste(stat, 'over', time, "precip",sep=" ")),sep="!")
+        }
+        
+        GDPCalls <- append(GDPCalls,GDPCallsNew)
+      } 
+    }
+
+  } else {
+    GDPCalls <- NA
+    GDP <- NA
+    shapefile <- NA
+    shapefileFeature <- NA
+  }
+  
+  if(nrow(PRECIP)>0){  
+    for (i in 1:nrow(PRECIP)){
+      site <- PRECIP$siteID[i]
+      stat <- PRECIP$Statistic[i]
+      time <- PRECIP$Hours[i]
+      tIndex <- PRECIP$tIndex[i]
+      colName <- PRECIP$colName[i]
+      
+      if(1 == i){
+        if(!is.na(stat) & !is.na(time)){
+          PRECIPCalls <- paste(site,tIndex,"precip3",stat,time,sep=":")          
+        } else {
+          PRECIPCalls <- paste(site,tIndex,"precip3","","",sep=":")
+        }
+        
+        if(!is.na(colName)){
+          PRECIPCalls <- paste(PRECIPCalls,colName,sep="!")
+        } else {          
+          PRECIPCalls <- paste(PRECIPCalls,URLencode(paste(stat, 'over', time, "precip",sep=" ")),sep="!")
+        }
+        
+      } else {
+        
+        if(!is.na(stat) & !is.na(time)){
+          PRECIPCallsNew <- paste(site,tIndex,"precip3",stat,time,sep=":")          
+        } else {
+          PRECIPCallsNew <- paste(site,tIndex,"precip3","","",sep=":")
+        }
+        
+        if(!is.na(colName)){
+          PRECIPCallsNew <- paste(PRECIPCallsNew,colName,sep="!")
+        } else {          
+          PRECIPCallsNew <- paste(PRECIPCallsNew,URLencode(paste(stat, 'over', time, "precip",sep=" ")),sep="!")
+        }
+        
+        PRECIPCalls <- append(PRECIPCalls,PRECIPCallsNew)
+      } 
+    }
+  } else {
+    
+    PRECIPCalls <- NA
+    PRECIP <- NA
+    
+  }
+  
   dataReturn <- list("NWISCalls" = NWISCalls,
                      "GLCFSCalls" = GLCFSCalls, 
                      "NWISPCodes" = NWISPCodes,
@@ -103,7 +198,11 @@ dataRequest <- function(totalParams){
                      "GLCFSVars" = GLCFSVars, 
                      "GLCFSSources" = GLCFSSources,
                      "NWIS" = NWIS,
-                     "GLCFS" = GLCFS)
+                     "GLCFS" = GLCFS,
+                     "GDP" = GDP,
+                     "GDPCalls" = GDPCalls,
+                     "PRECIPCalls" = PRECIPCalls,
+                     "PRECIP" = PRECIP)
   
   return(dataReturn)
   

@@ -2,8 +2,8 @@
 \alias{generateBaseUrl}
 \title{Generate baseURL for EnDDaT}
 \usage{
-  generateBaseUrl(beachName = "", beginPosition = "",
-    endPosition = "", tzone = "-6_CST", lake = "michigan",
+  generateBaseUrl(beginPosition, endPosition,
+    beachName = "", tzone = "-6_CST", lake = "michigan",
     beachLat = "", beachLon = "", filter = "", gap = "")
 }
 \arguments{
@@ -38,10 +38,8 @@ beginPosition <- '2006-10-02'
 endPosition <- '2006-10-05'
 tzone <- '-5_CDT'
 lake <- 'michigan'
-beachLat <- ''
-beachLon <- ''
 FischerFilterID <- "0925af38-d570-402f-a6ed-1e25f0554364"
 gap <- 6
-baseReturn <- generateBaseUrl(beachName, beginPosition,endPosition,tzone,lake,beachLat,beachLon,FischerFilterID,gap)
+baseReturn <- generateBaseUrl(beginPosition,endPosition,beachName=beachName,tzone=tzone,lake=lake,FischerFilterID,gap)
 }
 

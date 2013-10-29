@@ -21,7 +21,9 @@
 generateProcessNWISurl <- function(siteNumber,pCode,colName,process,numHours,statCd){
 
   NWIScall <- generateNWISurl(siteNumber, pCode,statCd,colName)
+
   processedNWIScall <- addStatProcess(NWIScall, process, numHours,colName)
+
   return(processedNWIScall)
   
 }

@@ -1,0 +1,29 @@
+\name{getEnDDaTData}
+\alias{getEnDDaTData}
+\title{Get EnDDaT data}
+\usage{
+  getEnDDaTData(totalParams, baseReturn, archive = TRUE,
+    endPosition, beginPosition)
+}
+\arguments{
+  \item{totalParams}{dataframe}
+
+  \item{baseReturn}{string}
+
+  \item{archive}{logical if requesting historical GDP data,
+  set to TRUE, otherwise FALSE.}
+
+  \item{endPosition}{character YYYY-MM-DD}
+
+  \item{beginPosition}{character YYYY-MM-DD}
+}
+\value{
+  EnDDaTData dataframe
+}
+\description{
+  Get EnDDaT data
+}
+\examples{
+\dontrun{getEnDDaTData(totalParams,baseReturn)}
+}
+

@@ -21,12 +21,23 @@
 addStatProcess <- function(urlSection, process, numHours,customColName=""){
   
   urlSection <- strsplit(urlSection,"!")
-  urlSec1 <- paste(urlSection[[1]][1],process,as.character(numHours),sep=":")
-  if(nchar(customColName) == 0){
-    colName <- URLencode(paste(process, 'over', numHours,URLdecode(urlSection[[1]][2]),sep=" "))
+  
+  if (!is.na(process) & !is.na(numHours)){
+    urlSec1 <- paste(urlSection[[1]][1],process,as.character(numHours),sep=":")
+    if(nchar(customColName) == 0){
+      colName <- URLencode(paste(process, 'over', numHours,URLdecode(urlSection[[1]][2]),sep=" "))
+    } else {
+      colName <- customColName
+    }
   } else {
-    colName <- customColName
+    urlSec1 <- paste(urlSection[[1]][1],":",":",sep="")
+    if(nchar(customColName) == 0){
+      colName <- URLencode(paste("raw",URLdecode(urlSection[[1]][2]),sep=" "))
+    } else {
+      colName <- customColName
+    }
   }
+  
   processCall <- paste(urlSec1,colName,sep="!")
   return(processCall)
   

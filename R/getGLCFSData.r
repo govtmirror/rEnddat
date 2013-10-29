@@ -18,24 +18,33 @@ getGLCFSData <- function(totalParams,baseReturn){
       uniqueSources <- unlist(dataRequestReturn['GLCFSSources'],use.names=FALSE)
       uniqueVariables <- unlist(dataRequestReturn['GLCFSVars'],use.names=FALSE)
       GLCFS <- dataRequestReturn['GLCFS'][[1]]
-      
+      GLCFSData <- data.frame()
+#       for (i in 1:length(GLCFSCalls)){
       for (i in 1:length(uniqueVariables)){
         collapse <- paste(GLCFSCalls[which(uniqueVariables[i]==GLCFS$pCode)],collapse="&")
+#         GLCFSurl <- paste(baseReturn,GLCFSCalls[i],sep="&")
         GLCFSurl <- paste(baseReturn,collapse,sep="&")
-        cat(uniqueVariables[i],": ",system.time(
+        message("Getting data: ",uniqueVariables[i],"\n",sep="")
+        possibleError <- tryCatch(  
           getEnDDaTGLCFSData <- read.delim(  
             GLCFSurl, 
             header = TRUE, 
             dec=".", 
             sep='\t',
             fill = TRUE, 
-            comment.char="#")  
-        )[3],"s. elapse\n",sep="")
-        getEnDDaTGLCFSData$time <- as.POSIXct(getEnDDaTGLCFSData$time, "%m/%d/%Y %H:%M",tz="")
-        if (1 == i){
-          GLCFSData <- getEnDDaTGLCFSData
+            comment.char="#"),
+          error=function(e) e 
+        )
+        
+        if(!inherits(possibleError, "error")){
+          getEnDDaTGLCFSData$time <- as.POSIXct(getEnDDaTGLCFSData$time, "%m/%d/%Y %H:%M",tz="")
+          if (!any(colnames(GLCFSData) == 'time')){
+            GLCFSData <- getEnDDaTGLCFSData
+          } else {
+            GLCFSData <- mergeENDDAT(GLCFSData, getEnDDaTGLCFSData)
+          }
         } else {
-          GLCFSData <- mergeENDDAT(GLCFSData, getEnDDaTGLCFSData)
+          message("Data: ",uniqueVariables[i]," did not load properly \n",sep="")
         }
       }
     } else {
