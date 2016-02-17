@@ -1,10 +1,12 @@
+.onAttach <- function(libname, pkgname) {
+  packageStartupMessage("Although this software program has been used by the U.S. Geological Survey (USGS), no warranty, expressed or implied, is made by the USGS or the U.S. Government as to the accuracy and functioning of the program and related program material nor shall the fact of distribution constitute any such warranty, and no responsibility is assumed by the USGS in connection therewith.")
+}
+
 #' EnDDaT related functions
 #'
 #' \tabular{ll}{
-#' Package: \tab EnDDaT\cr
+#' Package: \tab rEnDDaT\cr
 #' Type: \tab Package\cr
-#' Version: \tab 1.0.0\cr
-#' Date: \tab 2013-05-09\cr
 #' License: \tab Unlimited for this package, dependencies have more restrictive licensing.\cr
 #' Copyright: \tab This software is in the public domain because it contains materials
 #' that originally came from the United States Geological Survey, an agency of
