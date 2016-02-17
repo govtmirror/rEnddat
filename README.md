@@ -1,6 +1,22 @@
 rEnddat
 =======
 
+Package Installation
+-----------------------
+
+To install the `rEnDDaT` package you need to be using R 3.0 or greater. Then use the following command:
+
+```R
+library(devtools)
+install_github("USGS-R/rEnDDaT")
+
+```
+
+Workflow
+-----------------------
+
+
+
 Disclaimer
 ----------
 
