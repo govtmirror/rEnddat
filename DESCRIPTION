@@ -1,36 +1,18 @@
-Package: EnDDaT
+Package: rEnDDaT
 Type: Package
 Title: R EnDDaT
-Version: 1.1.0
-Date: 2013-07-18
+Version: 1.1.1
+Date: 2016-02-17
 Author: Laura De Cicco
 Maintainer: Laura De Cicco <ldecicco@usgs.gov>
 Description: This package breaks up EnDDaT requests into small easier to manage
     chunks.
-License: file LICENSE
+License: CC0
 Copyright: This software is in the public domain because it contains materials
     that originally came from the United States Geological Survey, an agency of
     the United States Department of Interior. For more information, see the
     official USGS copyright policy at
     http://www.usgs.gov/visual-id/credit_usgs.html#copyright
-Collate:
-    'addStatProcess.r'
-    'addVectorProcess.r'
-    'generateBaseUrl.r'
-    'generateGLCFSurl.r'
-    'generateNWISurl.r'
-    'generateProcessedNWISurl.r'
-    'generateProcessedGLCFS.r'
-    'mergeENDDAT.r'
-    'dataRequest.r'
-    'getGLCFSData.r'
-    'getNWISData.r'
-    'getParamsFromFile.r'
-    'enddat.R'
-    'getGDPId.R'
-    'getGDPData.r'
-    'getEnDDaTData.r'
-    'getPRECIPData.r'
 Depends:
     R (>= 3.0.0)
 Imports:
@@ -38,3 +20,4 @@ Imports:
     RCurl
 LazyLoad: yes
 LazyData: yes
+RoxygenNote: 5.0.1

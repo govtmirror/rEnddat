@@ -1,0 +1,11 @@
+Source,StationName,Descriptor,Statistic,Hours,colName,siteID,pCode,statCd,vector,angle,tIndex
+GLCFS,,HeightAboveSeaLevel,Mean,24,HeightAboveSeaLevel_mean_24,189:83:-1,eta,,,,
+GLCFS,,WaveDirection,Mean,24,WaveDirection_mean_24,189:83:-1,wvd,,,,
+GLCFS,,WaveHeight,Mean,24,WaveHeight_mean_24,189:83:-1,wvh,,,,
+GLCFS,,AirTemperature,Mean,24,AirTemperature_mean_24,189:83:-1,at,,,,
+GLCFS,,SeaTemperature8,Mean,24,SeaTemperature8_mean_24,189:83:8,temp,,,,
+GLCFS,,SeaTemperature13,Mean,24,SeaTemperature13_mean_24,189:83:13,temp,,,,
+GLCFS,,WaterVelocity8par,Mean,24,WaterVelocity8par_mean_24,189:83:8,v,,par,260.58,
+GLCFS,,WaterVelocity8perp,Mean,24,WaterVelocity8perp_mean_24,189:83:8,v,,perp,260.58,
+GLCFS,,AveWaterVelocitypar,Mean,24,AveWaterVelocitypar_mean_24,189:83:-1,vtm,,par,260.58,
+GLCFS,,AveWaterVelocityperp,Mean,24,AveWaterVelocityperp_mean_24,189:83:-1,vtm,,perp,260.58,
